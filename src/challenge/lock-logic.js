@@ -8,6 +8,19 @@ const lockState = window.mobx.observable({
 })
 
 function changeDialValue (index, incrementBy) {
+  console.log("---",index,incrementBy)
+  if(incrementBy == 1){
+    console.log("inc")
+    lockState.wheels[index]++
+  }else{
+    console.log("dec")
+    lockState.wheels[index]--
+  }
+  if(JSON.stringify(lockState.wheels)==JSON.stringify(SECRET_COMBO)) {
+    lockState.locked = false
+    console.log("Succcess!!")
+    redirect("bhavik-shah")
+  }
   // This part is missing some code
   // This function is automatically called when the user clicks on a chevron
   // it will be called with a wheel index and an amount to change the value by
@@ -25,6 +38,7 @@ function changeDialValue (index, incrementBy) {
   // call the redirect() function with your name
   // eg: redirect('larry-lobster')
   // the redirect function will only redirect if the lockState is unlocked
+
 }
 
 // let our other modules find our functions
